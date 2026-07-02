@@ -6,15 +6,17 @@ services:
     volumes:
       - dbdata:/var/lib/postgresql/data
     restart: unless-stopped
+
   adminer:
     image: adminer
     ports:
       - "8080:8080"
     restart: unless-stopped
-    web:
-      image: nginx:alpine
-    volumes: 
-     ~ ./site:/usr/share/nginx/html:ro
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
     ports:
       - "80:80"
     restart: unless-stopped
